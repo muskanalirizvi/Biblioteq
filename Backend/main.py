@@ -1,4 +1,5 @@
 from fastapi import FastAPI, Depends, HTTPException
+from fastapi.middleware.cors import CORSMiddleware
 from sqlalchemy.orm import Session
 from database import get_db
 from models import Book, Member
@@ -12,6 +13,14 @@ from auth import hash_password, verify_password, create_access_token, require_li
 from recommend import recommend_books
 
 app = FastAPI(title="Biblioteq")
+
+app.add_middleware(
+    CORSMiddleware,
+    allow_origins=["*"],
+    allow_credentials=True,
+    allow_methods=["*"],
+    allow_headers=["*"],
+)
 
 ROLE_LIMITS = {
     "student": {"max_books": 5, "due_days": 180},
