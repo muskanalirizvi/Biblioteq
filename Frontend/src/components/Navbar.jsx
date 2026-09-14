@@ -5,10 +5,12 @@ import { AUTH_EVENT, isLoggedIn, logout } from "../utils/auth";
 export default function Navbar() {
   const navigate = useNavigate();
   const [loggedIn, setLoggedIn] = useState(isLoggedIn());
+  const [role, setRole] = useState(localStorage.getItem("role"));
 
   useEffect(() => {
     function syncAuth() {
       setLoggedIn(isLoggedIn());
+      setRole(localStorage.getItem("role"));
     }
 
     window.addEventListener(AUTH_EVENT, syncAuth);
@@ -33,6 +35,9 @@ export default function Navbar() {
         {loggedIn ? (
           <>
             <Link to="/dashboard">Dashboard</Link>
+            {role === "librarian" && (
+              <Link to="/librarian">Librarian Dashboard</Link>
+            )}
             <button type="button" className="navbar-logout" onClick={handleLogout}>
               Log out
             </button>

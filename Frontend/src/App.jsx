@@ -5,6 +5,7 @@ import BookDetail from "./pages/BookDetail";
 import Login from "./pages/Login";
 import Register from "./pages/Register";
 import Dashboard from "./pages/Dashboard";
+import LibrarianDashboard from "./pages/LibrarianDashboard";
 import "./App.css";
 
 export default function App() {
@@ -18,6 +19,7 @@ export default function App() {
           <Route path="/login" element={<Login />} />
           <Route path="/register" element={<Register />} />
           <Route path="/dashboard" element={<Dashboard />} />
+          <Route path="/librarian" element={<LibrarianDashboard />} />
         </Routes>
       </main>
     </>
